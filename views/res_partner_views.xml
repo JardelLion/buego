@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="contacts.action_contacts" model="ir.actions.act_window">
+        <field name="res_model">res.partner</field>
+        <field name='domain'>[('is_company', '=', False)]</field>
+    </record>
+
+    <menuitem
+        id="buego_contacts_menu"
+        name="Contacts"
+        action="contacts.action_contacts"
+        parent="buego_menu"
+        sequence="10"/>
+
+</odoo>

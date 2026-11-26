@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="buego_menu" name="BueGo" sequence="10" 	web_icon="buego,static/description/icon.png"/>
+</odoo>
