@@ -1,2 +1,4 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 access_buego_dashboard_manager,buego_dashboard_manager,model_buego_dashboard,,1,1,1,1
+access_buego_destination_manager,buego_destination_manager,model_buego_destination,,1,1,1,1
+access_buego_location_manager,buego_location_manager,model_buego_location,,1,1,1,1

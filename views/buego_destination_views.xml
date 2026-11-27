@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View buego.destination View List -->
+    <record id="view_buego_destination_list" model="ir.ui.view">
+        <field name="name">view.buego.destination.list</field>
+        <field name="model">buego.destination</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- View buego.destination form -->
+     <record id="view_buego_destination_form" model="ir.ui.view">
+        <field name="name">buego.destination.form</field>
+        <field name="model">buego.destination</field>
+        <field name="arch" type="xml">
+            <form string="Destination">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"
+                                   placeholder="e.g. Home, Work, Airport"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Destination Information">
+                            <field name="partner_id"/>
+                            <field name="date_localization"/>
+                        </group>
+
+                        <group string="Schedule">
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Location">
+                            <group>
+                                <field name="location_id"/>
+                            </group>
+
+                            <group string="GPS Coordinates">
+                                <field name="latitude" readonly="1"/>
+                                <field name="longitude" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- View buego.destination search -->
+    <record id="view_buego_destination_search" model="ir.ui.view">
+        <field name="name">view.buego.destination.search</field>
+        <field name="model">buego.destination</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="1" string="Group By">
+                    <filter string="Name" name="name" domain="[]" context="{'group_by':'name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- kanban buego.destination -->
+    <record id="view_buego_destination_kanban" model="ir.ui.view">
+        <field name="name">buego.destination.kanban</field>
+        <field name="model">buego.destination</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="location_id"/>
+                <field name="latitude"/>
+                <field name="longitude"/>
+                <field name="partner_id"/>
+                <field name="date_localization"/>
+
+                <templates>
+                    <t t-name="card">
+                            <div class="p-3">
+
+                                <!-- Header -->
+                                <div class="d-flex
+                                            justify-content-between
+                                            align-items-start mb-3">
+
+                                    <div class="d-flex
+                                                align-items-center gap-2">
+
+                                        <div class="rounded-circle
+                                                    bg-warning-subtle
+                                                    d-flex align-items-center
+                                                    justify-content-center"
+                                             style="width: 44px;
+                                                    height: 44px;">
+
+                                            <i class="fa fa-map-marker
+                                                      fa-lg text-warning" title='marker'/>
+                                        </div>
+
+                                        <div>
+                                            <strong class="fs-5 d-block">
+                                                <field name="name"/>
+                                            </strong>
+
+                                            <small class="text-muted">
+                                                Buego Destination
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <span class="badge rounded-pill
+                                                 bg-primary-subtle
+                                                 text-primary">
+                                        Destination
+                                    </span>
+                                </div>
+
+                                <!-- Partner -->
+                                <div class="mb-3">
+                                    <small class="text-muted d-block">
+                                        Passenger
+                                    </small>
+
+                                    <div class="d-flex align-items-center
+                                                gap-2 mt-1">
+                                        <i class="fa fa-user-circle
+                                                  text-muted fa-lg" title='circle'/>
+                                        <field name="partner_id"/>
+                                    </div>
+                                </div>
+
+                                <!-- Location -->
+                                <div class="bg-light rounded-3 p-3 mb-3">
+
+                                    <div class="mb-2">
+                                        <small class="text-muted d-block">
+                                            Location
+                                        </small>
+
+                                        <strong>
+                                            <field name="location_id"/>
+                                        </strong>
+                                    </div>
+
+                                    <div class="row g-2">
+                                        <div class="col-6">
+                                            <small class="text-muted d-block">
+                                                Latitude
+                                            </small>
+                                            <field name="latitude"/>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <small class="text-muted d-block">
+                                                Longitude
+                                            </small>
+                                            <field name="longitude"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Schedule -->
+                                <div class="mb-3">
+                                    <div class="d-flex align-items-center
+                                                gap-2 mb-2">
+                                        <i class="fa fa-calendar
+                                                  text-primary" title='calendar'/>
+                                        <strong>Schedule</strong>
+                                    </div>
+
+                                    <div class="row g-2">
+
+                                        <div class="col-6">
+                                            <small class="text-muted d-block">
+                                                Start
+                                            </small>
+                                            <field name="start_datetime"/>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <small class="text-muted d-block">
+                                                End
+                                            </small>
+                                            <field name="end_datetime"/>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Footer -->
+                                <div class="d-flex
+                                            justify-content-between
+                                            align-items-center
+                                            border-top pt-3">
+
+                                    <small class="text-muted">
+                                        <i class="fa fa-clock-o me-1" title='clock'/>
+                                        <field name="date_localization"/>
+                                    </small>
+
+                                    <a role='button' t-if="record.latitude.raw_value and record.longitude.raw_value"
+                                       t-att-href="'https://www.google.com/maps?q=%s,%s' % (record.latitude.raw_value, record.longitude.raw_value)"
+                                       target="_blank"
+                                       class="btn btn-sm btn-outline-primary">
+
+                                        <i class="fa fa-map me-1" title='view map'/>
+                                        View Map
+                                    </a>
+                                </div>
+                            </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- Action buego.destination -->
+    <record id="action_buego_destination" model="ir.actions.act_window">
+        <field name="name">Destination</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">buego.destination</field>
+        <field name="view_mode">kanban,list,form,leaflet_map</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                There is no examples click here to add new Buego Destination.
+            </p>
+        </field>
+    </record>
+    <!-- leaflet map view -->
+    <record id="view_my_model_map" model="ir.ui.view">
+    <field name="model">buego.destination</field>
+    <field name="arch" type="xml">
+        <leaflet_map
+                field_latitude="latitude"
+                field_longitude="longitude"
+            >
+            <field name="latitude"/>
+            <field name="longitude"/>
+            <field name="name"/>
+        </leaflet_map>
+    </field>
+</record>
+
+    <menuitem
+        id="buego_destination_menu"
+        name="Destination"
+        action="action_buego_destination"
+        parent="buego_menu"
+        sequence="10"/>
+
+</odoo>

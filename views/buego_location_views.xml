@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View buego.location View List -->
+    <record id="view_buego_location_list" model="ir.ui.view">
+        <field name="name">view.buego.location.list</field>
+        <field name="model">buego.location</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- View buego.location form -->
+     <record id="view_buego_location_form" model="ir.ui.view">
+        <field name="name">buego.location.form</field>
+        <field name="model">buego.location</field>
+        <field name="arch" type="xml">
+            <form string="Location">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Talatona"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="GPS Coordinates">
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                        </group>
+                    </group>
+
+                    <group string="Map">
+                        <div class="o_row">
+                            <button name="%(buego.action_buego_location)d"
+                                    type="action"
+                                    string="Back to Locations"
+                                    class="btn-secondary"
+                                    role="button"/>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- View buego.location search -->
+    <record id="view_buego_location_search" model="ir.ui.view">
+        <field name="name">view.buego.location.search</field>
+        <field name="model">buego.location</field>
+        <field name="arch" type="xml">
+            <search>
+                <group expand="1" string="Group By">
+                    <filter string="Name" name="name" domain="[]" context="{'group_by':'name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <!--buego location views -->
+    <record id="view_buego_location_kanban" model="ir.ui.view">
+        <field name="name">buego.location.kanban</field>
+        <field name="model">buego.location</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" create="true">
+                <field name="name"/>
+                <field name="latitude"/>
+                <field name="longitude"/>
+
+                <templates>
+                    <t t-name="card">
+                            <div class="p-3">
+
+                                <!-- Header -->
+                                <div class="d-flex
+                                            justify-content-between
+                                            align-items-center
+                                            mb-3">
+
+                                    <div class="d-flex
+                                                align-items-center
+                                                gap-2">
+
+                                        <div class="rounded-circle
+                                                    d-flex
+                                                    align-items-center
+                                                    justify-content-center
+                                                    bg-primary-subtle"
+                                             style="width: 42px;
+                                                    height: 42px;">
+
+                                            <i class="fa fa-map-marker
+                                                      text-primary
+                                                      fa-lg" title='marker'/>
+                                        </div>
+
+                                        <div>
+                                            <strong class="d-block
+                                                          fs-5">
+                                                <field name="name"/>
+                                            </strong>
+                                            <small class="text-muted">
+                                                Buego Location
+                                            </small>
+                                        </div>
+                                    </div>
+
+                                    <span class="badge rounded-pill
+                                                 bg-success-subtle
+                                                 text-success">
+                                        <i class="fa fa-check-circle me-1" title='circle'/>
+                                        GPS
+                                    </span>
+                                </div>
+
+                                <!-- Coordinates -->
+                                <div class="bg-light rounded-3 p-3 mb-3">
+
+                                    <div class="row g-2">
+
+                                        <div class="col-6">
+                                            <small class="text-muted
+                                                          d-block">
+                                                Latitude
+                                            </small>
+                                            <strong>
+                                                <field name="latitude"/>
+                                            </strong>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <small class="text-muted
+                                                          d-block">
+                                                Longitude
+                                            </small>
+                                            <strong>
+                                                <field name="longitude"/>
+                                            </strong>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Footer -->
+                                <div class="d-flex
+                                            justify-content-between
+                                            align-items-center">
+
+                                    <small class="text-muted">
+                                        <i class="fa fa-globe me-1" title='geographic'/>
+                                        Geographic coordinates
+                                    </small>
+
+                                    <a  role='button' t-att-href="'https://www.google.com/maps?q=%s,%s' % (record.latitude.raw_value, record.longitude.raw_value)"
+                                       target="_blank"
+                                       class="btn btn-sm btn-outline-primary"
+                                       title="View on Google Maps">
+
+                                        <i class="fa fa-map me-1" title='view map'/>
+                                        View Map
+                                    </a>
+
+                                </div>
+
+                            </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- Action buego.location -->
+    <record id="action_buego_location" model="ir.actions.act_window">
+        <field name="name">Buego Location</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">buego.location</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                There is no examples click here to add new Buego Location.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="buego_location_menu"
+        name="Location"
+        action="action_buego_location"
+        parent="buego_configuration"
+        sequence="10"/>
+
+</odoo>

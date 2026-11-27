@@ -31,13 +31,14 @@
     'website': 'https://github.com/JardelLion/buego',
     'license': 'LGPL-3',
     'category': 'Services',
-    'depends': ['contacts', 'base_geolocalize'],
+    'depends': ['contacts', 'base_geolocalize', 'web_view_leaflet_map','web_widget_mapbox'],
     "data": [
         "security/ir.model.access.csv",
         "views/menu.xml",
         "views/buego_dashboard_views.xml",
+        "views/buego_destination_views.xml",
+        "views/buego_location_views.xml",
         "views/res_partner_views.xml"
-        
     ],
     'demo': [],
     'auto_install': False,

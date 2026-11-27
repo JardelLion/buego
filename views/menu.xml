@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <menuitem id="buego_menu" name="BueGo" sequence="10" 	web_icon="buego,static/description/icon.png"/>
+    <menuitem
+        id="buego_configuration"
+        name="Configuration"
+        parent="buego_menu"
+        sequence="200"/>
 </odoo>
